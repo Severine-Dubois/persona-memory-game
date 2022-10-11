@@ -3,11 +3,11 @@ import './App.scss';
 import GridCard from './components/GridCard/GridCard';
 
 const cardImages = [
-  { "src": "/img/Emperor-0.webp" },
-  { "src": "/img/Empress-0.webp" },
-  { "src": "/img/Fool-0.webp" },
-  { "src": "/img/Hierophant-0.webp" },
-  { "src": "/img/Priestess-0.webp" },
+  { "src": "/img/Emperor-0.webp", matched: false },
+  { "src": "/img/Empress-0.webp", matched: false },
+  { "src": "/img/Fool-0.webp", matched: false },
+  { "src": "/img/Hierophant-0.webp", matched: false },
+  { "src": "/img/Priestess-0.webp", matched: false },
 ];
 
 function App() {
@@ -47,15 +47,25 @@ function App() {
 
   // comparer les cartes
   useEffect(() => {
-    if(choiceOne && choiceTwo) {
+    if (choiceOne && choiceTwo) {
       if (choiceOne.src === choiceTwo.src) {
-        console.log('success');
+        setCards(prevCards => {
+          return prevCards.map(card => {
+            if (card.src === choiceOne.src) {
+              return { ...card, matched: true }
+            } else {
+              return card;
+            }
+          })
+        })
       } else {
         console.log('fail');
       }
       resetTurn();
     }
   }, [choiceOne, choiceTwo]);
+
+  console.log(cards);
 
   return (
     <div className="App">
