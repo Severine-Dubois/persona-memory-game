@@ -1,6 +1,8 @@
+import './turnscounter.scss';
+
 export const TurnsCounter = ({ turns }) => {
     return (
-        <div>
+        <div className="counter">
             Nombre de tour(s) : {turns}
         </div>
     )

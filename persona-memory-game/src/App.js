@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.scss';
 import GridCard from './components/GridCard/GridCard';
+import { Modal } from './components/Modal/Modal';
 import { TurnsCounter } from './components/TurnsCounter/TurnsCounter';
 
 const cardImages = [
@@ -17,6 +18,7 @@ function App() {
   const [choiceOne, setChoiceOne] = useState(null);
   const [choiceTwo, setChoiceTwo] = useState(null);
   const [disabled, setDisabled] = useState(false);
+  const [modal, setModal] = useState(false);
 
   const shuffleCard = () => {
     // On veut dupliquer chaque carte pour les avoir en double
@@ -28,6 +30,7 @@ function App() {
 
     setChoiceOne(null);
     setChoiceTwo(null);
+    setModal(false);
     setCards(shuffle);
     // On utilise le setTurns car on va appeler la fonction shuffleCard à
     // chaque nouvelle partie et donc remettre le compteur à 0
@@ -69,12 +72,25 @@ function App() {
         setTimeout(() => resetTurn(), 1000);
       }
     }
+    gameOver();
   }, [choiceOne, choiceTwo]);
+
+  console.log(cards);
 
   // démarrer une partie automatiquement
   useEffect(() => {
     shuffleCard();
   }, []);
+
+  // terminer une partie
+  const gameOver = () => {
+    if (cards.length > 0) {
+      const matched = (item) => item.matched === true;
+      if (cards.every(matched)) {
+        setModal(true)
+      }
+    }
+  }
 
   return (
     <div className="App">
@@ -88,6 +104,7 @@ function App() {
         disabled={disabled}
       />
       <TurnsCounter turns={turns} />
+      <Modal modal={modal} />
     </div>
   );
 }

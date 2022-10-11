@@ -2,17 +2,21 @@
     position: relative;
 
     & img {
-        width: 100%;
+        width: 80%;
         display: block;
         border: 2px solid white;
         border-radius: 6px;
     }
 
     &-grid {
+        width: 80%;
+        margin: auto;
         margin-top: 40px;
+        padding: 1em;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
         grid-gap: 20px;
+        border: 2px solid black;
     }
 
     & .front {
