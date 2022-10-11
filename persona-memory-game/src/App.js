@@ -58,10 +58,10 @@ function App() {
             }
           })
         })
+        resetTurn();
       } else {
-        console.log('fail');
+        setTimeout(() => resetTurn(), 1000);
       }
-      resetTurn();
     }
   }, [choiceOne, choiceTwo]);
 
@@ -71,7 +71,12 @@ function App() {
     <div className="App">
       <h1>Memory Game</h1>
       <button onClick={shuffleCard}>Start a new game</button>
-      <GridCard cards={cards} handleChoice={handleChoice} />
+      <GridCard
+        cards={cards}
+        handleChoice={handleChoice} 
+        choiceOne={choiceOne}
+        choiceTwo={choiceTwo}
+      />
     </div>
   );
 }

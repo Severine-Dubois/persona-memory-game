@@ -1,4 +1,6 @@
-const SingleCard = ({ item, handleChoice }) => {
+import './gridcard.scss';
+
+const SingleCard = ({ item, handleChoice, flipped }) => {
 
     const handleClick = () => {
         handleChoice(item);
@@ -6,7 +8,7 @@ const SingleCard = ({ item, handleChoice }) => {
    
     return (
         <div className='card'>
-            <div>
+            <div className={flipped ?  "flipped" : ""}>
                 {/* recto de la carte */}
                 <img className="front" src={item.src} alt="card front" />
                 {/* versp de la carte */}
