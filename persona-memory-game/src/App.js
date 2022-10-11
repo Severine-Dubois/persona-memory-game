@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.scss';
 import GridCard from './components/GridCard/GridCard';
+import { TurnsCounter } from './components/TurnsCounter/TurnsCounter';
 
 const cardImages = [
   { "src": "/img/Emperor-0.webp", matched: false },
@@ -23,8 +24,10 @@ function App() {
       // on les mélange
       .sort(() => Math.random() - 0.5)
       // et pour chaque objet carte, on lui associe un id random
-      .map((card) => ({ ...card, id: Math.random() }))
+      .map((card) => ({ ...card, id: Math.random() }));
 
+    setChoiceOne(null);
+    setChoiceTwo(null);
     setCards(shuffle);
     // On utilise le setTurns car on va appeler la fonction shuffleCard à
     // chaque nouvelle partie et donc remettre le compteur à 0
@@ -68,19 +71,23 @@ function App() {
     }
   }, [choiceOne, choiceTwo]);
 
-  console.log(cards);
+  // démarrer une partie automatiquement
+  useEffect(() => {
+    shuffleCard();
+  }, []);
 
   return (
     <div className="App">
       <h1>Memory Game</h1>
-      <button onClick={shuffleCard}>Start a new game</button>
+      <button onClick={shuffleCard}>Nouvelle partie</button>
       <GridCard
         cards={cards}
-        handleChoice={handleChoice} 
+        handleChoice={handleChoice}
         choiceOne={choiceOne}
         choiceTwo={choiceTwo}
         disabled={disabled}
       />
+      <TurnsCounter turns={turns} />
     </div>
   );
 }
