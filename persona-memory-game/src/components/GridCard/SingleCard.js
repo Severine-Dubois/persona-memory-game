@@ -1,9 +1,11 @@
 import './gridcard.scss';
 
-const SingleCard = ({ item, handleChoice, flipped }) => {
+const SingleCard = ({ item, handleChoice, flipped, disabled }) => {
 
     const handleClick = () => {
-        handleChoice(item);
+        if(!disabled) {
+            handleChoice(item);
+        }
     }
    
     return (
