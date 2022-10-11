@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.scss';
 import GridCard from './components/GridCard/GridCard';
 
@@ -13,6 +13,8 @@ const cardImages = [
 function App() {
   const [cards, setCards] = useState([]);
   const [turns, setTurns] = useState(0);
+  const [choiceOne, setChoiceOne] = useState(null);
+  const [choiceTwo, setChoiceTwo] = useState(null);
 
   const shuffleCard = () => {
     // On veut dupliquer chaque carte pour les avoir en double
@@ -28,13 +30,38 @@ function App() {
     setTurns(0);
   }
 
-  console.log(cards, turns);
+  const handleChoice = (card) => {
+    choiceOne ? setChoiceTwo(card) : setChoiceOne(card);
+    // on ne fait pas le check des cartes ici car le state ne sera pas
+    // mis à jour à ce moment
+  }
+
+  // A chaque tour de jeu, on reset le choix des cartes
+  // et on augmente le compteur
+  const resetTurn = () => {
+    let prevTurns = turns;
+    setChoiceOne(null);
+    setChoiceTwo(null);
+    setTurns(prevTurns = prevTurns + 1);
+  }
+
+  // comparer les cartes
+  useEffect(() => {
+    if(choiceOne && choiceTwo) {
+      if (choiceOne.src === choiceTwo.src) {
+        console.log('success');
+      } else {
+        console.log('fail');
+      }
+      resetTurn();
+    }
+  }, [choiceOne, choiceTwo]);
 
   return (
     <div className="App">
       <h1>Memory Game</h1>
       <button onClick={shuffleCard}>Start a new game</button>
-      <GridCard cards={cards} />
+      <GridCard cards={cards} handleChoice={handleChoice} />
     </div>
   );
 }
