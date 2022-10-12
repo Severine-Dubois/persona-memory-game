@@ -11,6 +11,10 @@ const cardImages = [
   { "src": "/img/Fool-0.webp", matched: false },
   { "src": "/img/Hierophant-0.webp", matched: false },
   { "src": "/img/Priestess-0.webp", matched: false },
+  { "src": "/img/Lovers-0.webp", matched: false },
+  { "src": "/img/Chariot-0.webp", matched: false },
+  { "src": "/img/Justice-0.webp", matched: false },
+  { "src": "/img/Hermit-0.webp", matched: false },
 ];
 
 function App() {
