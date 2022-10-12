@@ -9,14 +9,16 @@
     }
 
     &-grid {
-        width: 80%;
+        width: 60%;
         margin: auto;
         margin-top: 40px;
         padding: 1em;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
         grid-gap: 20px;
-        border: 2px solid black;
+        border: 2px solid #FFFF81;
+        border-radius: 20px;
+        background-color: #FFFF81;
     }
 
     & .front {

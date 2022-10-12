@@ -1,0 +1,31 @@
+.menu {
+    position: fixed;
+    left: 30px;
+    top: 0;
+    width: 200px;
+    padding:  cal(1.5rem/2) 0;
+    background-color: yellow;
+    background-image: url('../../../public/img/persona_4_stripes.jpg');
+    box-shadow: inset -20px 0 20px -20px rgba(0,0,0,.75);
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    font-weight: bold;
+    font-size: 1.5em;
+    -webkit-text-stroke-width: 0.8px;
+    -webkit-text-stroke-color: #ffffff;
+    -webkit-text-fill-color: #000000;
+    
+    @media (max-width: 700px) {
+      width: 150px;
+      font-size: .85em;
+    }
+  }
+
+.year-me {
+  font-size: 0.8em;
+}
+  

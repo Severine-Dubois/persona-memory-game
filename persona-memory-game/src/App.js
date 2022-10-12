@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.scss';
 import GridCard from './components/GridCard/GridCard';
+import { Menu } from './components/Menu/Menu';
 import { Modal } from './components/Modal/Modal';
 import { TurnsCounter } from './components/TurnsCounter/TurnsCounter';
 
@@ -75,8 +76,6 @@ function App() {
     gameOver();
   }, [choiceOne, choiceTwo]);
 
-  console.log(cards);
-
   // démarrer une partie automatiquement
   useEffect(() => {
     shuffleCard();
@@ -94,17 +93,20 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Memory Game</h1>
-      <button onClick={shuffleCard}>Nouvelle partie</button>
-      <GridCard
-        cards={cards}
-        handleChoice={handleChoice}
-        choiceOne={choiceOne}
-        choiceTwo={choiceTwo}
-        disabled={disabled}
-      />
-      <TurnsCounter turns={turns} />
-      <Modal modal={modal} />
+      <Menu />
+      <div className="game">
+        <h1>Memory Game</h1>
+        <button onClick={shuffleCard}>Nouvelle partie</button>
+        <GridCard
+          cards={cards}
+          handleChoice={handleChoice}
+          choiceOne={choiceOne}
+          choiceTwo={choiceTwo}
+          disabled={disabled}
+        />
+        <TurnsCounter turns={turns} />
+        <Modal modal={modal} />
+      </div>
     </div>
   );
 }

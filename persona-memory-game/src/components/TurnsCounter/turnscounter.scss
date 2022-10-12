@@ -1,3 +1,23 @@
 .counter {
-    padding: 1em;
+    height: 100%;
+    position: relative;
+    margin: 3em;
+    padding: 1em 2em;
+    background-color: #2B2B2B;
+    color: white;
+    font-weight: bold;
+    display: inline-block;
+    border-radius: 10px;
+
+}
+.counter-child {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    rotate: 10deg;
+    background: #FDFE24;
+    z-index: -1;
+    border-radius: 10px;
 }
